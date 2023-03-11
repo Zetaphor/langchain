@@ -45,7 +45,7 @@ def get_action_and_input(llm_output: str) -> Tuple[str, str]:
     if not match:
         # raise ValueError(f"Could not parse LLM output: `{llm_output}`")
         print(f"No action found, providing raw output: ${llm_output}")
-        return "Final Answer", llm_output.strip()
+        return "Final Answer", llm_output.replace("\n", " ").strip()
     action = match.group(1).strip()
     action_input = match.group(2)
     return action, action_input.strip(" ").strip('"')
